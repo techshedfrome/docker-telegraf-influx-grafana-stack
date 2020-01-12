@@ -2,6 +2,7 @@ version: '3.6'
 services:
   telegraf:
     image: telegraf:latest
+    restart: unless-stopped
     volumes:
     - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
@@ -13,6 +14,7 @@ services:
 
   influxdb:
     image: influxdb:latest
+    restart: unless-stopped
     env_file: configuration.env
     ports:
       - '8086:8086'
@@ -21,6 +23,7 @@ services:
 
   grafana:
     image: grafana/grafana:latest
+    restart: unless-stopped
     depends_on:
       - influxdb
     env_file: configuration.env
