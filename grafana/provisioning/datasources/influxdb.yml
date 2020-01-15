@@ -2,45 +2,36 @@
 apiVersion: 1
 
 # list of datasources that should be deleted from the database
-deleteDatasources:
-  - name: Influxdb
-    orgId: 1
+# deleteDatasources:
+#   - name: Telegraf
+#     orgId: 1
+#   - name: Luftdaten
+#     orgId: 1
 
-# list of datasources to insert/update depending
-# whats available in the database
+# list of datasources to insert/update 
 datasources:
-  # <string, required> name of the datasource. Required
-- name: InfluxDB
-  # <string, required> datasource type. Required
+- name: Telegraf
   type: influxdb
-  # <string, required> access mode. direct or proxy. Required
   access: proxy
-  # <int> org id. will default to orgId 1 if not specified
   orgId: 1
-  # <string> url
   url: http://influxdb:8086
-  # <string> database password, if used
   password: "admin"
-  # <string> database user, if used
   user: "admin"
-  # <string> database name, if used
-  database: "influx"
-  # <bool> enable/disable basic auth
+  database: "telegraf" # not sure whether the [configuration.env] file will be applied at this level, so harcoded for now "${DS_TELEGRAF}
   basicAuth: false
-#  withCredentials:
-  # <bool> mark as default datasource. Max one per org
   isDefault: true
-  # <map> fields that will be converted to json and stored in json_data
   jsonData:
     timeInterval: "5s"
-#     graphiteVersion: "1.1"
-#     tlsAuth: false
-#     tlsAuthWithCACert: false
-#  # <string> json object of data that will be encrypted.
-#  secureJsonData:
-#    tlsCACert: "..."
-#    tlsClientCert: "..."
-#    tlsClientKey: "..."
   version: 1
-  # <bool> allow users to edit datasources from the UI.
+  editable: false
+- name: Luftdaten
+  type: influxdb
+  access: proxy
+  orgId: 1
+  url: http://influxdb:8086
+  database: "luftdaten" # not sure whether the [configuration.env] file will be applied at this level, so harcoded for now "${DS_FEINSTAUBSENSOR}"
+  basicAuth: false
+  jsonData:
+    timeInterval: "5s"
+  version: 1
   editable: false
