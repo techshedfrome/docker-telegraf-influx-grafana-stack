@@ -9,12 +9,7 @@ services:
     ports:
       - '8086:8086'
     volumes:
-      - ./influxdb_data:/var/lib/influxdb
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://influxdb:8086"]
-      interval: 1s
-      timeout: 3s
-      retries: 60
+      - influxdb_data:/var/lib/influxdb
 
   grafana:
     image: grafana/grafana:latest
@@ -28,7 +23,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./grafana_data:/var/lib/grafana
+      - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
       
