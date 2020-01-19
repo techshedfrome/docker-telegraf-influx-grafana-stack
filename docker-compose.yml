@@ -1,28 +1,24 @@
 version: '3.6'
 services:
-  telegraf:
-    image: telegraf:latest
-    restart: unless-stopped
-    volumes:
-    - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    depends_on:
-      - influxdb
-    links:
-      - influxdb
-    ports:
-    - '8125:8125/udp'
 
   influxdb:
     image: influxdb:latest
+    container_name: influxdb_luftdaten
     restart: unless-stopped
     env_file: configuration.env
     ports:
       - '8086:8086'
     volumes:
-      - influxdb_data:/var/lib/influxdb
+      - ./influxdb_data:/var/lib/influxdb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://influxdb:8086"]
+      interval: 1s
+      timeout: 3s
+      retries: 60
 
   grafana:
     image: grafana/grafana:latest
+    container_name: grafana_luftdaten
     restart: unless-stopped
     depends_on:
       - influxdb
@@ -32,9 +28,22 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - grafana_data:/var/lib/grafana
+      - ./grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+      
+  telegraf:
+    image: telegraf:latest
+    container_name: telegraf_luftdaten
+    restart: unless-stopped
+    volumes:
+    - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    ports:
+    - '8125:8125/udp'
 
 volumes:
   grafana_data: {}

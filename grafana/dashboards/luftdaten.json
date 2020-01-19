@@ -16,7 +16,6 @@
   "editable": true,
   "gnetId": 11548,
   "graphTooltip": 0,
-  "id": null,
   "links": [],
   "panels": [
     {
@@ -28,7 +27,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_FEINSTAUBSENSOR}",
+      "datasource": "luftdaten",
       "decimals": 1,
       "format": "celsius",
       "gauge": {
@@ -61,6 +60,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -143,7 +143,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_FEINSTAUBSENSOR}",
+      "datasource": "luftdaten",
       "decimals": 1,
       "format": "percent",
       "gauge": {
@@ -176,6 +176,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -257,7 +258,7 @@
         "#629e51",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_FEINSTAUBSENSOR}",
+      "datasource": "luftdaten",
       "decimals": 1,
       "format": "ppm",
       "gauge": {
@@ -290,6 +291,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -372,7 +374,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "${DS_FEINSTAUBSENSOR}",
+      "datasource": "luftdaten",
       "decimals": 1,
       "format": "ppm",
       "gauge": {
@@ -405,6 +407,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -485,8 +488,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_FEINSTAUBSENSOR}",
+      "datasource": "luftdaten",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 12,
@@ -508,6 +512,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -565,6 +572,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Temperature",
       "tooltip": {
@@ -610,8 +618,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_FEINSTAUBSENSOR}",
+      "datasource": "luftdaten",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 12,
@@ -633,6 +642,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -685,6 +697,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "PM 2.5",
       "tooltip": {
@@ -730,8 +743,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_FEINSTAUBSENSOR}",
+      "datasource": "luftdaten",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 12,
@@ -753,6 +767,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -810,6 +827,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Humidity",
       "tooltip": {
@@ -853,8 +871,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_FEINSTAUBSENSOR}",
+      "datasource": "luftdaten",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 12,
@@ -876,6 +895,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -928,6 +950,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "PM 10",
       "tooltip": {
@@ -968,11 +991,38 @@
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 16,
+  "schemaVersion": 20,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "isNone": true,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": "luftdaten",
+        "definition": "show tag values with key = \"node\"",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "name": "Sensor",
+        "options": [],
+        "query": "show tag values with key = \"node\"",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-2d",
@@ -1001,5 +1051,5 @@
   "timezone": "browser",
   "title": "Luftdaten (English)",
   "uid": "axWTqxgRk",
-  "version": 6
+  "version": 1
 }
