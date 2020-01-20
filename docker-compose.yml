@@ -2,7 +2,7 @@ version: '3.6'
 services:
 
   influxdb:
-    image: influxdb:latest
+    image: influxdb:alpine
     container_name: influxdb_luftdaten
     restart: unless-stopped
     env_file: configuration.env
@@ -28,7 +28,7 @@ services:
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
       
   telegraf:
-    image: telegraf:latest
+    image: telegraf:alpine
     container_name: telegraf_luftdaten
     restart: unless-stopped
     volumes:
