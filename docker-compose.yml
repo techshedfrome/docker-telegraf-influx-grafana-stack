@@ -28,7 +28,7 @@ services:
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
       
   telegraf:
-    image: telegraf:alpine
+    image: telegraf:latest
     container_name: telegraf_luftdaten
     restart: unless-stopped
     volumes:
