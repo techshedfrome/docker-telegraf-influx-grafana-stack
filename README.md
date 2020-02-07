@@ -2,7 +2,7 @@
 
 This configuration icludes Grafana dashboards, connected to InfluxDB for:
 * Telegraf - monitoring the host machine
-* Luftdate - monitoring data pushed into the Luftdaten database in InfluxDb from [AirRohr](https://luftdaten.info/en/construction-manual/) pollution sensor devices 
+* Luftdaten - monitoring data pushed into the Luftdaten database in InfluxDb from [AirRohr](https://luftdaten.info/en/construction-manual/) pollution sensor devices 
 
 ## Start Docker Stack
 
